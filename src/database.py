@@ -10,7 +10,7 @@ def get_connection(db_path='data/marketing.db'):
 def save_data(df, db_path='data/marketing.db'):
     """Stores the marketing dataframe as a table in the database."""
     conn = get_connection(db_path)
-    df.to_sql('marketing_data', conn, index=False, if_exists='replace')
+    df.to_sql('marketing_data', conn, index=False, if_exists='append')
     conn.close()
 
 

@@ -1,5 +1,6 @@
 import os
 from src.data_generator import generate_dataset
+from migrations.migrate import run_migrations
 from src.database import save_data, run_queries
 from src.model import train_model
 from src.simulator import simulate_scenarios
@@ -20,6 +21,11 @@ df.to_csv('data/marketing_data.csv', index=False)
 print(f"   {df.shape[0]} rows × {df.shape[1]} columns")
 
 # 2. Database
+
+# Migrations
+print("\n️ Running migrations...")
+run_migrations()
+
 print("\nSaving to database & running queries...")
 save_data(df)
 spend_by_channel, revenue_stats, high_performers = run_queries()
