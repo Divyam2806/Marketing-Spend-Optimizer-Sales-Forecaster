@@ -1,7 +1,7 @@
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score, mean_absolute_error
-
+import joblib
 
 def train_model(df):
     """
@@ -36,3 +36,12 @@ def train_model(df):
     }
 
     return model, features, metrics, (y_test, y_pred)
+
+def save_model(model, path='data/model.joblib'):
+    """Saves the trained model to disk."""
+    joblib.dump(model, path)
+
+
+def load_model(path='data/model.joblib'):
+    """Loads a saved model from disk."""
+    return joblib.load(path)

@@ -2,7 +2,7 @@ import os
 from src.data_generator import generate_dataset
 from migrations.migrate import run_migrations
 from src.database import save_data, run_queries
-from src.model import train_model
+from src.model import train_model, save_model, load_model
 from src.simulator import simulate_scenarios
 from src.optimizer import optimize_budget
 from src import visualizer
@@ -45,6 +45,8 @@ print("   Saved to outputs/01_eda.png")
 # 4. Model
 print("\nTraining model...")
 model, features, metrics, test_data = train_model(df)
+save_model(model)
+print("   Model saved to data/model.joblib")
 print(f"   R²  : {metrics['r2']:.4f}")
 print(f"   MAE : ${metrics['mae']:.2f}K")
 print("\n   Coefficients:")
