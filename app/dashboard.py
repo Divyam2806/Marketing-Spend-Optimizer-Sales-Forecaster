@@ -22,18 +22,13 @@ st.set_page_config(
 def get_model_and_data():
     """Load model and data once at startup."""
     df = generate_dataset(n=200)
-    model_path = os.path.join(ROOT, 'data', 'model.joblib')
-    if os.path.exists(model_path):
-        model = load_model(model_path)
-    else:
-        model, features, metrics, test_data = train_model(df)
-        save_model(model, model_path)
+    model, features, metrics, test_data = train_model(df)
     features = [col for col in df.columns if col.endswith('_spend')]
     return model, features, df
 model, features, df = get_model_and_data()
 
 # ── Header ────────────────────────────────────────────────────
-st.title("📈 Marketing Spend Optimizer & Sales Forecaster")
+st.title(" Marketing Spend Optimizer & Sales Forecaster")
 st.markdown("Optimize your marketing budget allocation using regression-based predictions.")
 st.divider()
 
